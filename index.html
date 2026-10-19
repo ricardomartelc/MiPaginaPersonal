@@ -3,64 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tu Nombre | Portfolio Surfero</title>
-    
-    <!-- Conexión al CSS -->
+    <title>Ricardo Martel | Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Fuentes -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Cursor personalizado -->
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
+    <!-- Canvas de fondo global para TODA la web -->
+    <canvas id="global-bg-canvas"></canvas>
 
-    
-    <!-- Fondo de estrellas -->
-    <canvas id="stars-canvas"></canvas>
-
-    <!-- Añade esto en tu index.html, justo debajo del canvas de estrellas -->
-    <canvas id="fluid-canvas"></canvas>
-
-
-    <!-- Pantalla de entrada -->
+    <!-- Loader / Portada de entrada -->
     <div id="loader">
-        <h1>Entrar al océano</h1>
-        <button id="start-btn">Zambullirse</button>
+        <div class="loader-content">
+            <h1 class="loader-title">EXPLORA EL HORIZONTE</h1>
+            
+            <!-- Botón de entrada con efecto óptico 3D -->
+            <button id="start-btn" class="optic-3d-btn">
+                <span class="btn-glow"></span>
+                <span class="btn-text">ZAMBULLIRSE</span>
+            </button>
+        </div>
     </div>
 
-    <!-- Contenido -->
     <main id="smooth-content">
+        
+        <!-- Hero principal -->
         <section class="hero">
-            <h1 class="reveal-text">Tu Nombre</h1>
-            <p class="reveal-text">Creative Developer & Surfer</p>
-        </section>
-
-        <section class="about">
-            <h2 class="reveal-text">Bajo la superficie</h2>
-            <p class="reveal-text">Soy un creativo enfocado en el desarrollo web y el diseño cinematográfico. Me encanta combinar código y olas.</p>
-        </section>
-
-        <section class="featured-work">
-            <h2 class="reveal-text">Proyecto Destacado</h2>
-            <div class="pinned-image">
-                <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=2000&auto=format&fit=crop" alt="Surf">
+            <div class="hero-content">
+                <h1 class="reveal-text">RICARDO<br>MARTEL</h1>
+                <p class="reveal-text">Creative Developer & Engineer</p>
             </div>
         </section>
 
-        <section class="contact">
-            <h2 class="reveal-text">Contacto</h2>
-            <a href="mailto:tu@email.com" class="reveal-text">tu@email.com</a>
+        <!-- Sobre mí / Introducción -->
+        <section class="about">
+            <h2 class="reveal-text">BAJO LA SUPERFICIE</h2>
+            <p class="reveal-text">Ingeniero y desarrollador enfocado en crear experiencias digitales inmersivas, arquitectura eficiente y diseño de alto nivel.</p>
         </section>
+
+        <!-- Sección de Proyecto con Imagen Flotante sobre Texto (Efecto Signaturit) -->
+        <section class="featured-work">
+            <div class="split-layout">
+                <!-- Texto izquierda (perderá opacidad progresivamente con el scroll) -->
+                <div class="text-side">
+                    <span class="tag">PROYECTO DESTACADO</span>
+                    <h2 class="fade-out-text">Construyendo interfaces del futuro con rendimiento extremo.</h2>
+                    <p class="fade-out-text">Un vistazo al proceso creativo, la interacción 3D y el código detrás de la experiencia.</p>
+                </div>
+
+                <!-- Imagen que entra de derecha a izquierda flotando por encima -->
+                <div class="image-side-wrapper">
+                    <div class="floating-card">
+                        <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=2000&auto=format&fit=crop" alt="Proyecto" class="slide-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto con Canvas de Puntos/Partículas sutiles abajo del todo -->
+        <section class="contact">
+            <div class="contact-inner">
+                <h2 class="reveal-text">CONTACTO</h2>
+                <a href="mailto:ricardo@email.com" class="reveal-text contact-link">ricardo@email.com</a>
+            </div>
+            <!-- Canvas de puntos rosa/blanco/azul sutiles -->
+            <canvas id="footer-dots-canvas"></canvas>
+        </section>
+
     </main>
 
-    <!-- GSAP y ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    
-    <!-- Tu script -->
     <script src="script.js"></script>
 </body>
 </html>
