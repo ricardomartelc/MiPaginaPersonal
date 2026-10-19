@@ -1,0 +1,101 @@
+:root {
+    --bg-dark: #090d16;
+    --text-light: #f8fafc;
+    --accent-blue: #3a86ff;
+    --font-main: 'Inter', sans-serif;
+    --font-title: 'Syne', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: var(--font-main);
+    overflow-x: hidden;
+    cursor: auto !important;
+}
+
+#global-bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+}
+
+#dragon-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Canvas para el efecto Blob Reveal sutil */
+#loader-blob-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#loader {
+    position: fixed; top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #090d16 !important;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 99999;
+    perspective: 1000px; /* Perspectiva 3D */
+    overflow: hidden;
+}
+
+.loader-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+/* ==========================================================================
+   AQUÍ PUEDES RETOCAR EL ANCHO Y ESPACIEDO DE "EXPLORA EL HORIZONTE"
+   ========================================================================== */
+.loader-title {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    margin-bottom: 2.5rem;
+    
+    /* MODIFICA ESTE VALOR PARA DARLE MÁS O MENOS ANCHO LATERAL: */
+    letter-spacing: 0px; /* Prueba con -1px, 0px o 1px a tu gusto */
+    
+    text-align: center;
+    background: linear-gradient(135deg, #ffffff 50%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateZ(20px); /* Ligero realce 3D */
+}
+
+.optic-3d-btn {
+    position: relative;
+    padding: 18px 48px;
+    font-family: var(--font-title);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50px;
+    cursor: pointer !important;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 25px rgba(58, 134, 255, 0.3);
+    transition: all 0.4s ease;
+}
+
+.optic-3d-btn:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 20px 40px rgba(58, 134, 255, 0.5);
+}

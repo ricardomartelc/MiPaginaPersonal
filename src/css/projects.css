@@ -1,0 +1,125 @@
+.featured-work {
+    min-height: 100vh;
+    padding: 12vh 6vw;
+    position: relative;
+}
+
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.text-side {
+    z-index: 1;
+    padding-right: 2rem;
+}
+
+.tag {
+    display: inline-block;
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    color: var(--accent-blue);
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+}
+
+.fade-out-title {
+    font-family: var(--font-title);
+    font-size: clamp(2rem, 3.6vw, 3.1rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.fade-out-subtitle {
+    color: #94a3b8;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 400px; 
+}
+
+.image-side-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.floating-card {
+    width: 100%;
+    height: 500px;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: -25px 25px 60px rgba(0, 0, 0, 0.8);
+}
+
+.slide-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+}
+
+/* Nueva sección intermedia */
+.extra-section {
+    min-height: 60vh;
+    padding: 0 8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.extra-content h2 {
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.extra-content p {
+    color: #94a3b8;
+    font-size: 1.15rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+/* Contacto y Footer */
+.contact {
+    min-height: 80vh;
+    position: relative;
+    padding: 0 8vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-inner {
+    z-index: 2;
+    position: relative;
+}
+
+.contact-sub {
+    color: #94a3b8;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.contact-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--text-light);
+    text-decoration: none;
+    font-family: var(--font-title);
+    transition: color 0.3s;
+}
+
+.contact-link:hover {
+    color: var(--accent-blue);
+}
+
+#footer-dots-canvas {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 250px;
+    pointer-events: none;
+    z-index: 1;
+}

@@ -1,0 +1,153 @@
+gsap.registerPlugin(ScrollTrigger);
+
+// 1. Manejo del Loader
+const startBtn = document.getElementById('start-btn');
+const loader = document.getElementById('loader');
+
+if (startBtn && loader) {
+    startBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        gsap.to(loader, {
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.inOut",
+            onComplete: () => {
+                loader.style.display = 'none';
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                gsap.to(".hero .reveal-text", { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: "power3.out" });
+            }
+        });
+    });
+}
+
+// 2. EMPUJE 3D RECEPTIVO CON EL CURSOR SOLO EN "EXPLORA EL HORIZONTE"
+const loaderTitle = document.querySelector('.loader-title');
+if (loaderTitle) {
+    window.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+        
+        const xOffset = (clientX / innerWidth - 0.5) * 2;
+        const yOffset = (clientY / innerHeight - 0.5) * 2;
+
+        // Se inclina y empuja suavemente solo el título de entrada
+        gsap.to(loaderTitle, {
+            rotationY: xOffset * 15,
+            rotationX: -yOffset * 15,
+            z: -25 * Math.abs(xOffset),
+            duration: 0.5,
+            ease: "power2.out"
+        });
+    });
+}
+
+// 3. EFECTO LIQUID BLOB SUTIL DE FONDO EN LA ENTRADA
+const blobCanvas = document.getElementById('loader-blob-canvas');
+if (blobCanvas) {
+    const bCtx = blobCanvas.getContext('2d');
+    blobCanvas.width = window.innerWidth;
+    blobCanvas.height = window.innerHeight;
+
+    let mouseX = blobCanvas.width / 2;
+    let mouseY = blobCanvas.height / 2;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    let time = 0;
+    function animateBlob() {
+        requestAnimationFrame(animateBlob);
+        time += 0.015;
+        
+        bCtx.clearRect(0, 0, blobCanvas.width, blobCanvas.height);
+
+        // Gradiente líquido sutil y fluido que persigue suavemente al ratón
+        let radius = 180 + Math.sin(time) * 20;
+        let grad = bCtx.createRadialGradient(mouseX, mouseY, 10, mouseX, mouseY, radius);
+        grad.addColorStop(0, 'rgba(58, 134, 255, 0.22)');
+        grad.addColorStop(0.5, 'rgba(255, 0, 127, 0.1)');
+        grad.addColorStop(1, 'rgba(9, 13, 22, 0)');
+
+        bCtx.fillStyle = grad;
+        bCtx.beginPath();
+        bCtx.arc(mouseX, mouseY, radius, 0, Math.PI * 2);
+        bCtx.fill();
+    }
+    animateBlob();
+
+    window.addEventListener('resize', () => {
+        blobCanvas.width = window.innerWidth;
+        blobCanvas.height = window.innerHeight;
+    });
+}
+
+// 4. Animaciones de scroll para la página principal
+gsap.fromTo(".image-side-wrapper", 
+    { x: "35vw", opacity: 0.2 },
+    {
+        x: "-4vw",
+        opacity: 1,
+        scrollTrigger: {
+            trigger: ".featured-work",
+            start: "top 75%",
+            end: "top 15%",
+            scrub: 1
+        }
+    }
+);
+
+gsap.fromTo(".fade-out-title", 
+    { opacity: 1 },
+    {
+        opacity: 0.15,
+        scrollTrigger: {
+            trigger: ".featured-work",
+            start: "top 35%",
+            end: "top -5%",
+            scrub: 1
+        }
+    }
+);
+
+// 5. Fondo Global Azul/Gris
+const globalCanvas = document.getElementById('global-bg-canvas');
+if (globalCanvas) {
+    const gCtx = globalCanvas.getContext('2d');
+    globalCanvas.width = window.innerWidth;
+    globalCanvas.height = window.innerHeight;
+
+    let time = 0;
+    function animateGlobalBg() {
+        requestAnimationFrame(animateGlobalBg);
+        time += 0.003;
+        
+        gCtx.clearRect(0, 0, globalCanvas.width, globalCanvas.height);
+        
+        gCtx.fillStyle = '#0d131f';
+        gCtx.fillRect(0, 0, globalCanvas.width, globalCanvas.height);
+        
+        let x1 = globalCanvas.width * 0.6 + Math.sin(time) * 100;
+        let y1 = globalCanvas.height * 0.7 + Math.cos(time * 0.8) * 80;
+        let grad1 = gCtx.createRadialGradient(x1, y1, 20, x1, y1, globalCanvas.width * 0.7);
+        grad1.addColorStop(0, 'rgba(30, 64, 110, 0.45)');
+        grad1.addColorStop(1, 'rgba(13, 19, 31, 0)');
+        gCtx.fillStyle = grad1;
+        gCtx.fillRect(0, 0, globalCanvas.width, globalCanvas.height);
+
+        let x2 = globalCanvas.width * 0.2 + Math.cos(time * 0.7) * 120;
+        let y2 = globalCanvas.height * 0.3 + Math.sin(time * 0.5) * 90;
+        let grad2 = gCtx.createRadialGradient(x2, y2, 10, x2, y2, globalCanvas.width * 0.6);
+        grad2.addColorStop(0, 'rgba(140, 160, 185, 0.22)');
+        grad2.addColorStop(1, 'rgba(13, 19, 31, 0)');
+        gCtx.fillStyle = grad2;
+        gCtx.fillRect(0, 0, globalCanvas.width, globalCanvas.height);
+    }
+    animateGlobalBg();
+
+    window.addEventListener('resize', () => {
+        globalCanvas.width = window.innerWidth;
+        globalCanvas.height = window.innerHeight;
+    });
+}
