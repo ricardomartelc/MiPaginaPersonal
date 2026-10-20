@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// 1. Manejo del Loader
+// 1. Manejo del Loader y transición de salida
 const startBtn = document.getElementById('start-btn');
 const loader = document.getElementById('loader');
 
@@ -20,9 +20,11 @@ if (startBtn && loader) {
     });
 }
 
-// 2. Empuje 3D receptivo con el cursor en "EXPLORA EL HORIZONTE"
+// 2. Efecto Parallax 3D interactivo con el cursor (Texto editorial masivo y fondo de ola)
 const loaderTitle = document.querySelector('.loader-title');
-if (loaderTitle) {
+const surfBg = document.getElementById('surf-bg');
+
+if (loaderTitle && surfBg) {
     window.addEventListener('mousemove', (e) => {
         const { clientX, clientY } = e;
         const { innerWidth, innerHeight } = window;
@@ -30,11 +32,20 @@ if (loaderTitle) {
         const xOffset = (clientX / innerWidth - 0.5) * 2;
         const yOffset = (clientY / innerHeight - 0.5) * 2;
 
+        // Inclinación 3D sutil del bloque de texto principal
         gsap.to(loaderTitle, {
-            rotationY: xOffset * 15,
-            rotationX: -yOffset * 15,
-            z: -25 * Math.abs(xOffset),
-            duration: 0.5,
+            rotationY: xOffset * 8,
+            rotationX: -yOffset * 8,
+            duration: 0.6,
+            ease: "power2.out"
+        });
+
+        // Movimiento de profundidad inverso para la imagen de la ola (efecto inmersivo)
+        gsap.to(surfBg, {
+            x: -xOffset * 25,
+            y: -yOffset * 25,
+            scale: 1.12,
+            duration: 0.8,
             ease: "power2.out"
         });
     });
@@ -68,7 +79,7 @@ gsap.fromTo(".fade-out-title",
     }
 );
 
-// Entrada lateral lenta y suave para el collage de dos fotos
+// Entrada lateral suave para el collage de dos fotos
 gsap.fromTo(".item-left", 
     { x: "-20vw", opacity: 0 },
     {
@@ -97,7 +108,7 @@ gsap.fromTo(".item-right",
     }
 );
 
-// 4. Fondo Global Azul/Gris unificado
+// 4. Fondo Global Azul/Gris unificado dinámico
 const globalCanvas = document.getElementById('global-bg-canvas');
 if (globalCanvas) {
     const gCtx = globalCanvas.getContext('2d');
