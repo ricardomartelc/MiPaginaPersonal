@@ -20,7 +20,7 @@ if (startBtn && loader) {
     });
 }
 
-// 2. EMPUJE 3D RECEPTIVO CON EL CURSOR SOLO EN "EXPLORA EL HORIZONTE"
+// 2. Empuje 3D receptivo con el cursor en "EXPLORA EL HORIZONTE"
 const loaderTitle = document.querySelector('.loader-title');
 if (loaderTitle) {
     window.addEventListener('mousemove', (e) => {
@@ -30,7 +30,6 @@ if (loaderTitle) {
         const xOffset = (clientX / innerWidth - 0.5) * 2;
         const yOffset = (clientY / innerHeight - 0.5) * 2;
 
-        // Se inclina y empuja suavemente solo el título de entrada
         gsap.to(loaderTitle, {
             rotationY: xOffset * 15,
             rotationX: -yOffset * 15,
@@ -41,49 +40,7 @@ if (loaderTitle) {
     });
 }
 
-// 3. EFECTO LIQUID BLOB SUTIL DE FONDO EN LA ENTRADA
-const blobCanvas = document.getElementById('loader-blob-canvas');
-if (blobCanvas) {
-    const bCtx = blobCanvas.getContext('2d');
-    blobCanvas.width = window.innerWidth;
-    blobCanvas.height = window.innerHeight;
-
-    let mouseX = blobCanvas.width / 2;
-    let mouseY = blobCanvas.height / 2;
-
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
-    let time = 0;
-    function animateBlob() {
-        requestAnimationFrame(animateBlob);
-        time += 0.015;
-        
-        bCtx.clearRect(0, 0, blobCanvas.width, blobCanvas.height);
-
-        // Gradiente líquido sutil y fluido que persigue suavemente al ratón
-        let radius = 180 + Math.sin(time) * 20;
-        let grad = bCtx.createRadialGradient(mouseX, mouseY, 10, mouseX, mouseY, radius);
-        grad.addColorStop(0, 'rgba(58, 134, 255, 0.22)');
-        grad.addColorStop(0.5, 'rgba(255, 0, 127, 0.1)');
-        grad.addColorStop(1, 'rgba(9, 13, 22, 0)');
-
-        bCtx.fillStyle = grad;
-        bCtx.beginPath();
-        bCtx.arc(mouseX, mouseY, radius, 0, Math.PI * 2);
-        bCtx.fill();
-    }
-    animateBlob();
-
-    window.addEventListener('resize', () => {
-        blobCanvas.width = window.innerWidth;
-        blobCanvas.height = window.innerHeight;
-    });
-}
-
-// 4. Animaciones de scroll para la página principal
+// 3. Animaciones de scroll para la página principal
 gsap.fromTo(".image-side-wrapper", 
     { x: "35vw", opacity: 0.2 },
     {
@@ -111,7 +68,36 @@ gsap.fromTo(".fade-out-title",
     }
 );
 
-// 5. Fondo Global Azul/Gris
+// Entrada lateral lenta y suave para el collage de dos fotos
+gsap.fromTo(".item-left", 
+    { x: "-20vw", opacity: 0 },
+    {
+        x: "0vw",
+        opacity: 1,
+        scrollTrigger: {
+            trigger: ".billabong-section",
+            start: "top 85%",
+            end: "top 20%",
+            scrub: 2.5
+        }
+    }
+);
+
+gsap.fromTo(".item-right", 
+    { x: "20vw", opacity: 0 },
+    {
+        x: "0vw",
+        opacity: 1,
+        scrollTrigger: {
+            trigger: ".billabong-section",
+            start: "top 85%",
+            end: "top 20%",
+            scrub: 2.5
+        }
+    }
+);
+
+// 4. Fondo Global Azul/Gris unificado
 const globalCanvas = document.getElementById('global-bg-canvas');
 if (globalCanvas) {
     const gCtx = globalCanvas.getContext('2d');

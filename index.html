@@ -17,9 +17,8 @@
 
     <canvas id="global-bg-canvas"></canvas>
 
-    <!-- Pantalla de Bienvenida con Blob y Dragón -->
+    <!-- Pantalla de Bienvenida -->
     <div id="loader">
-        <canvas id="loader-blob-canvas"></canvas>
         <canvas id="dragon-canvas"></canvas>
         
         <div class="loader-content">
@@ -48,8 +47,28 @@
                 </div>
                 <div class="image-side-wrapper">
                     <div class="floating-card">
-                        <img src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=2000&auto=format&fit=crop" alt="Proyecto" class="slide-img">
+                        <img src="src/images/billabong3.jpg" alt="Proyecto" class="slide-img">
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN FINAL: COLLAGE SIMPLIFICADO -->
+        <section class="billabong-section">
+            <div class="billabong-header">
+                <h2 class="billabong-title">LIFE'S BETTER IN BOARDSHORTS</h2>
+                <p class="billabong-subtitle">Capturando momentos en el agua y experiencias cinematográficas.</p>
+            </div>
+
+            <div class="collage-grid-simple">
+                <!-- Foto Izquierda -->
+                <div class="collage-item item-left">
+                    <img src="src/images/billabong1.jpg" alt="Mentawai">
+                </div> <!-- <-- AQUÍ FALTABA ESTE CIERRE -->
+
+                <!-- Foto Derecha -->
+                <div class="collage-item item-right">
+                    <img src="src/images/billabong2.jpg" alt="Indo">
                 </div>
             </div>
         </section>
@@ -61,6 +80,11 @@
             </div>
             <canvas id="footer-dots-canvas"></canvas>
         </section>
+
+        <!-- Footer Minimalista de Cierre -->
+        <footer class="site-footer">
+            <p>© 2026 Ricardo Martel. Todos los derechos reservados.</p>
+        </footer>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
